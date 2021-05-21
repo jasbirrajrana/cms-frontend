@@ -10,7 +10,6 @@ ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <ColorModeScript />
-
       <ApolloProvider client={client}>
         <App />
       </ApolloProvider>

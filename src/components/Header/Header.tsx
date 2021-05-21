@@ -2,20 +2,25 @@ import { Button, IconButton } from "@chakra-ui/button";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { Image } from "@chakra-ui/image";
 import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
-import { useBreakpointValue } from "@chakra-ui/media-query";
+import { useMediaQuery } from "@chakra-ui/media-query";
 import { Collapse } from "@chakra-ui/transition";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ColorModeSwitcher } from "../../ColorModeSwitcher";
+import { AuthContext } from "../../context/auth";
+import DropDown from "../DropDown";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
+import { useLogout_MeMutation } from "../../generated/graphql";
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
+  const [isSmallThan730] = useMediaQuery("(max-width: 730px)");
   const { isOpen, onToggle } = useDisclosure();
+  const { user } = useContext(AuthContext);
+  const [logout, { client }] = useLogout_MeMutation();
   return (
     <>
       <Box>
@@ -53,42 +58,52 @@ const Header: React.FC<HeaderProps> = () => {
             justify={{ base: "center", md: "start" }}
             alignItems="center"
           >
-            {/* <Image
-              justifySelf={useBreakpointValue({ base: "center", md: "left" })}
-              src="/icons/connect-final.svg"
-              objectFit="contain"
-              height="55px"
-              alt="Connect Logo"
-            /> */}
-            <Link to="/">
-              <Heading>Logo</Heading>
-            </Link>
+            {!isSmallThan730 && (
+              <Link to="/">
+                <Heading>Logo</Heading>
+              </Link>
+            )}
 
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
               <DesktopNav />
             </Flex>
           </Flex>
-
           <Stack
             flex={{ base: 1, md: 0 }}
             justify={"flex-end"}
             direction={"row"}
             spacing={6}
+            alignItems="center"
           >
-            <Link to="/login">
-              <Button
-                display={{ base: "none", md: "inline-flex" }}
-                fontSize={"sm"}
-                fontWeight={600}
-                color={"white"}
-                bg={"pink.400"}
-                _hover={{
-                  bg: "pink.300",
-                }}
-              >
-                Sign In
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                <DropDown />
+                <Button
+                  colorScheme="red"
+                  onClick={async () => {
+                    await logout();
+                    client.cache.reset();
+                  }}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link to="/login">
+                <Button
+                  display={{ base: "none", md: "inline-flex" }}
+                  fontSize={"sm"}
+                  fontWeight={600}
+                  color={"white"}
+                  bg={"pink.400"}
+                  _hover={{
+                    bg: "pink.300",
+                  }}
+                >
+                  Sign In
+                </Button>
+              </Link>
+            )}
 
             <ColorModeSwitcher />
           </Stack>

@@ -1,0 +1,294 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "d:\\PROJECTS\\SIDE-PROJECTS\\BLOGGING-PLATFORM\\web",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2021-05-21 13:31:16",
+            "filesum": 37,
+            "codesum": 12755,
+            "commentsum": 125,
+            "blanksum": 3125,
+            "statistics": {
+                ".json": {
+                    "code": 107,
+                    "comment": 0,
+                    "blank": 4
+                },
+                "": {
+                    "code": 20,
+                    "comment": 2,
+                    "blank": 4
+                },
+                ".md": {
+                    "code": 40,
+                    "comment": 6,
+                    "blank": 19
+                },
+                ".tsx": {
+                    "code": 772,
+                    "comment": 51,
+                    "blank": 72
+                },
+                ".ts": {
+                    "code": 41,
+                    "comment": 5,
+                    "blank": 6
+                },
+                ".graphql": {
+                    "code": 30,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".html": {
+                    "code": 20,
+                    "comment": 23,
+                    "blank": 0
+                },
+                ".yml": {
+                    "code": 9,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".lock": {
+                    "code": 11713,
+                    "comment": 37,
+                    "blank": 3020
+                },
+                ".txt": {
+                    "code": 3,
+                    "comment": 1,
+                    "blank": 0
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": ".env"
+                },
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "codegen.yml"
+                },
+                {
+                    "blank": 2,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public\\favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 23,
+                    "filename": "public\\index.html"
+                },
+                {
+                    "filename": "public\\logo192.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "public\\logo512.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "public\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 1,
+                    "filename": "public\\robots.txt"
+                },
+                {
+                    "blank": 19,
+                    "code": 40,
+                    "comment": 6,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\apollo.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\App.test.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 21,
+                    "comment": 0,
+                    "filename": "src\\App.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src\\ColorModeSwitcher.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "src\\components\\Field.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 52,
+                    "comment": 3,
+                    "filename": "src\\components\\Header\\DesktopNav.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 53,
+                    "comment": 0,
+                    "filename": "src\\components\\Header\\DesktopSubNav.tsx"
+                },
+                {
+                    "blank": 7,
+                    "code": 92,
+                    "comment": 6,
+                    "filename": "src\\components\\Header\\Header.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "src\\components\\Header\\MobileNav.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "src\\components\\Header\\MobileNavItem.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src\\components\\Header\\NavItems.tsx"
+                },
+                {
+                    "blank": 29,
+                    "code": 171,
+                    "comment": 36,
+                    "filename": "src\\generated\\graphql.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\graphql\\getAllPosts.graphql"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src\\graphql\\register.graphql"
+                },
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 6,
+                    "filename": "src\\index.tsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src\\pages\\HomeScreen.tsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src\\pages\\LoginScreen.tsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "src\\pages\\RegisterScreen.tsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 1,
+                    "filename": "src\\react-app-env.d.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src\\reportWebVitals.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "src\\setupTests.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src\\test-utils.tsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\utils\\toErrorMap.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src\\utils\\yupSchema.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "tsconfig.json"
+                },
+                {
+                    "blank": 3020,
+                    "code": 11713,
+                    "comment": 37,
+                    "filename": "yarn.lock"
+                }
+            ]
+        }
+    ]
+}

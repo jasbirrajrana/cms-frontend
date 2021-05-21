@@ -2,10 +2,11 @@ import { Button } from "@chakra-ui/button";
 import { Box, Center, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { Form, Formik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import Field from "../components/Field";
-import { useRegisterMutation } from "../generated/graphql";
+import { AuthContext } from "../context/auth";
+import { MeDocument, MeQuery, useRegisterMutation } from "../generated/graphql";
 import { toMapError } from "../utils/toErrorMap";
 import { validationSchema } from "../utils/yupSchema";
 
@@ -14,9 +15,10 @@ interface RegisterProps extends RouteComponentProps<any> {}
 const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
   const [isSmallThan490] = useMediaQuery("(max-width: 490px)");
   const [register, { loading }] = useRegisterMutation();
+  const { setUser } = useContext(AuthContext);
   return (
     <>
-      <Center minH="100vh">
+      <Center minH="80vh">
         <Box w={["100%", 400]} padding={isSmallThan490 ? "30px" : "0px"}>
           <Formik
             validationSchema={validationSchema}
@@ -24,10 +26,23 @@ const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
             onSubmit={async ({ username, email, password }, { setErrors }) => {
               const response = await register({
                 variables: { username, email, password },
+                update: (store, { data }) => {
+                  if (!data) {
+                    return null;
+                  }
+                  store.writeQuery<MeQuery>({
+                    query: MeDocument,
+                    data: {
+                      __typename: "Query",
+                      me: data.register.user,
+                    },
+                  });
+                },
               });
               if (response.data?.register.errors) {
                 setErrors(toMapError(response.data.register.errors));
               } else if (response.data?.register.user) {
+                setUser(response.data?.register.user);
                 history.push("/");
               }
             }}
