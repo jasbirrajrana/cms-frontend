@@ -1,0 +1,15 @@
+query getAllPosts {
+  getAllPosts {
+    _id
+    title
+    body
+    createdAt
+    updatedAt
+    slug
+    author {
+      _id
+      username
+      email
+    }
+  }
+}
