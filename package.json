@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.19",
+    "@chakra-ui/icons": "^1.0.13",
     "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
@@ -15,14 +16,17 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "dotenv": "^9.0.2",
+    "formik": "^2.2.7",
     "framer-motion": "^4.0.0",
     "graphql": "^15.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^3.0.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "typescript": "^3.9.5",
-    "web-vitals": "^0.2.2"
+    "web-vitals": "^0.2.2",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -50,6 +54,7 @@
     "@graphql-codegen/cli": "1.21.4",
     "@graphql-codegen/typescript": "^1.22.0",
     "@graphql-codegen/typescript-operations": "1.17.16",
-    "@graphql-codegen/typescript-react-apollo": "2.2.4"
+    "@graphql-codegen/typescript-react-apollo": "2.2.4",
+    "@types/react-router-dom": "^5.1.7"
   }
 }
