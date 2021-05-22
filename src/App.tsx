@@ -10,6 +10,7 @@ import RegisterScreen from "./pages/RegisterScreen";
 import Loader from "./components/Loader/Loader";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
+import OtpPage from "./pages/OtpPage";
 
 interface AppProps {}
 
@@ -33,6 +34,7 @@ const App: React.FC<AppProps> = () => {
           <Route path="/" component={HomeScreen} exact />
           <PrivateRoute path="/register" component={RegisterScreen} />
           <PrivateRoute path="/login" component={LoginScreen} />
+          <Route path="/otp" component={OtpPage} />
         </Switch>
       </BrowserRouter>
     </AuthContext.Provider>
