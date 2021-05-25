@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Center, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import { useToast } from "@chakra-ui/toast";
 import { Form, Formik } from "formik";
 import React, { useContext } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
@@ -15,7 +16,8 @@ interface RegisterProps extends RouteComponentProps<any> {}
 const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
   const [isSmallThan490] = useMediaQuery("(max-width: 490px)");
   const [register, { loading }] = useRegisterMutation();
-  const { setUser } = useContext(AuthContext);
+  const toast = useToast();
+  // const { setUser } = useContext(AuthContext);
   return (
     <>
       <Center minH="80vh">
@@ -26,24 +28,20 @@ const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
             onSubmit={async ({ username, email, password }, { setErrors }) => {
               const response = await register({
                 variables: { username, email, password },
-                update: (store, { data }) => {
-                  if (!data) {
-                    return null;
-                  }
-                  store.writeQuery<MeQuery>({
-                    query: MeDocument,
-                    data: {
-                      __typename: "Query",
-                      me: data.register.user,
-                    },
-                  });
-                },
               });
               if (response.data?.register.errors) {
+                console.log(response.data.register.errors);
                 setErrors(toMapError(response.data.register.errors));
               } else if (response.data?.register.user) {
-                setUser(response.data?.register.user);
-                history.push("/");
+                // do the things which you want after successfull submisson of the form
+                toast({
+                  title: "Account created.",
+                  description:
+                    "Verification Email has been sent Please verify that!",
+                  status: "success",
+                  duration: 9000,
+                  isClosable: true,
+                });
               }
             }}
           >

@@ -11,7 +11,7 @@ import Loader from "./components/Loader/Loader";
 import ProtectedRoute from "./ProtectedRoute";
 import PrivateRoute from "./PrivateRoute";
 import OtpPage from "./pages/OtpPage";
-
+import UserConfirm from "./pages/UserConfirm";
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
@@ -34,6 +34,7 @@ const App: React.FC<AppProps> = () => {
           <Route path="/" component={HomeScreen} exact />
           <PrivateRoute path="/register" component={RegisterScreen} />
           <PrivateRoute path="/login" component={LoginScreen} />
+          <Route path="/user/confirm/:token" component={UserConfirm} />
           <Route path="/otp" component={OtpPage} />
         </Switch>
       </BrowserRouter>

@@ -1,0 +1,15 @@
+mutation confirmUser($token: String!) {
+  confirmUser(token: $token) {
+    user {
+      _id
+      createdAt
+      updatedAt
+      username
+      email
+      isVerfied
+    }
+    errors {
+      message
+    }
+  }
+}
