@@ -48,6 +48,7 @@ export type MutationRegisterArgs = {
 
 
 export type MutationCreatePostArgs = {
+  tag: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   body: Scalars['String'];
@@ -77,6 +78,7 @@ export type Post = {
   subtitle: Scalars['String'];
   body: Scalars['String'];
   description: Scalars['String'];
+  tag: Scalars['String'];
   featureImage: Scalars['String'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
@@ -138,6 +140,23 @@ export type ConfirmUserMutation = (
   ) }
 );
 
+export type GetPostQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type GetPostQuery = (
+  { __typename?: 'Query' }
+  & { getPostByslug: (
+    { __typename?: 'Post' }
+    & Pick<Post, '_id' | 'slug' | 'createdAt' | 'updatedAt' | 'body' | 'featureImage' | 'title'>
+    & { author: (
+      { __typename?: 'User' }
+      & Pick<User, '_id' | 'username' | 'email'>
+    ) }
+  ) }
+);
+
 export type GetPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -145,7 +164,7 @@ export type GetPostsQuery = (
   { __typename?: 'Query' }
   & { getAllPosts: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, '_id' | 'title' | 'body' | 'createdAt' | 'updatedAt' | 'slug' | 'description'>
+    & Pick<Post, '_id' | 'title' | 'body' | 'createdAt' | 'updatedAt' | 'slug' | 'tag' | 'description'>
     & { author: (
       { __typename?: 'User' }
       & Pick<User, '_id' | 'username' | 'email'>
@@ -257,6 +276,52 @@ export function useConfirmUserMutation(baseOptions?: Apollo.MutationHookOptions<
 export type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMutation>;
 export type ConfirmUserMutationResult = Apollo.MutationResult<ConfirmUserMutation>;
 export type ConfirmUserMutationOptions = Apollo.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
+export const GetPostDocument = gql`
+    query getPost($slug: String!) {
+  getPostByslug(slug: $slug) {
+    _id
+    slug
+    createdAt
+    updatedAt
+    body
+    featureImage
+    title
+    author {
+      _id
+      username
+      email
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetPostQuery__
+ *
+ * To run a query within a React component, call `useGetPostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPostQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useGetPostQuery(baseOptions: Apollo.QueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, options);
+      }
+export function useGetPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, options);
+        }
+export type GetPostQueryHookResult = ReturnType<typeof useGetPostQuery>;
+export type GetPostLazyQueryHookResult = ReturnType<typeof useGetPostLazyQuery>;
+export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVariables>;
 export const GetPostsDocument = gql`
     query getPosts {
   getAllPosts {
@@ -266,6 +331,7 @@ export const GetPostsDocument = gql`
     createdAt
     updatedAt
     slug
+    tag
     description
     author {
       _id

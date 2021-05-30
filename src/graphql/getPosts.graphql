@@ -6,6 +6,7 @@ query getPosts {
     createdAt
     updatedAt
     slug
+    tag
     description
     author {
       _id

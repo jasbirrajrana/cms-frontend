@@ -1,0 +1,16 @@
+query getPost($slug: String!) {
+  getPostByslug(slug: $slug) {
+    _id
+    slug
+    createdAt
+    updatedAt
+    body
+    featureImage
+    title
+    author {
+      _id
+      username
+      email
+    }
+  }
+}

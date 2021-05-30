@@ -4,16 +4,17 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloProvider } from "@apollo/client";
-import { client } from "./apollo";
-import theme from "./theme";
 
-import "@fontsource/varela-round/index.css";
+import { client } from "./apollo";
+import customTheme from "./styles/theme";
+import GlobalStyle from "./GlobalStyle";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={customTheme}>
       <ColorModeScript />
       <ApolloProvider client={client}>
+        <GlobalStyle />
         <App />
       </ApolloProvider>
     </ChakraProvider>
