@@ -2,6 +2,7 @@ import { Heading } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import React, { useContext, useEffect } from "react";
 import { RouteComponentProps, useParams } from "react-router-dom";
+import HelmetSeo from "../components/HelmetSeo";
 import Loader from "../components/Loader/Loader";
 import { AuthContext } from "../context/auth";
 import {
@@ -52,6 +53,10 @@ const UserConfirm: React.FC<UserConfirmProps> = ({ history }) => {
 
   return (
     <>
+      <HelmetSeo
+        title="Confirm Page | jasbirrajrana"
+        content="Confirmation page / @jasbirrajrana"
+      />
       {loading && <Loader />}
       <Heading>Confirm user screen</Heading>
     </>

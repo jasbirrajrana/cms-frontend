@@ -33,7 +33,7 @@ const GlobalStyle: React.FC<GlobalStyleProps> = () => {
             background: #aaa;
           }
           ::selection {
-            background-color: #90cdf4;
+            background-color: #fca311;
             color: #fefefe;
           }
           ::-moz-selection {

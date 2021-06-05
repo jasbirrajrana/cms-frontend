@@ -6,6 +6,7 @@ import { Form, Formik } from "formik";
 import React, { useContext } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import Field from "../components/Field";
+import HelmetSeo from "../components/HelmetSeo";
 import { AuthContext } from "../context/auth";
 import { MeDocument, MeQuery, useRegisterMutation } from "../generated/graphql";
 import { toMapError } from "../utils/toErrorMap";
@@ -21,6 +22,10 @@ const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
   return (
     <>
       <Center minH="80vh">
+        <HelmetSeo
+          title="Register | jasbirrajrana"
+          content="Register with Email Id @jasbirrajrana"
+        />
         <Box w={["100%", 400]} padding={isSmallThan490 ? "30px" : "0px"}>
           <Formik
             validationSchema={validationSchema}

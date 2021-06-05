@@ -24,7 +24,6 @@ const prismBaseTheme = css`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-    width: 100%;
   }
   /* Code blocks */
   pre[class*="language-"] {
@@ -35,8 +34,9 @@ const prismBaseTheme = css`
     margin: ${theme.space[6]} 0;
     overflow: auto;
     min-width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     white-space: nowrap;
+    width: 100%;
   }
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {

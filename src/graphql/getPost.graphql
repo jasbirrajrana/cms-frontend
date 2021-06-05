@@ -7,6 +7,7 @@ query getPost($slug: String!) {
     body
     featureImage
     title
+    description
     author {
       _id
       username

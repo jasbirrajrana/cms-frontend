@@ -8,15 +8,11 @@ import Loader from "../components/Loader/Loader";
 import readingTime from "reading-time";
 import { useGetPostQuery } from "../generated/graphql";
 import { Image } from "@chakra-ui/image";
-import {
-  FcDoughnutChart,
-  FcMultipleDevices,
-  FcPrivacy,
-  FcTimeline,
-} from "react-icons/fc";
+
 import HighlightedMarkdown from "../components/HighlightMarkdown";
 import FeatureProjectCard from "../components/FeatureProjectCard";
 import { useColorMode } from "@chakra-ui/color-mode";
+import HelmetSeo from "../components/HelmetSeo";
 
 interface PostScreenProps {}
 
@@ -42,17 +38,13 @@ const PostScreen: React.FC<PostScreenProps> = () => {
     const ScrollPercent = (Scrolled / MaxHeight) * 100;
     setWidth(ScrollPercent);
   };
-  const iconColor = {
-    light: "gray.600",
-    dark: "gray.300",
-  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
-
   return (
     <>
       {loading ? (
@@ -61,6 +53,10 @@ const PostScreen: React.FC<PostScreenProps> = () => {
         <Text>{error}</Text>
       ) : (
         <>
+          <HelmetSeo
+            title={data?.getPostByslug.title}
+            content={data?.getPostByslug.description}
+          />
           <Box
             h={1}
             as="div"
@@ -71,7 +67,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
             w={`${width}%`}
           ></Box>
 
-          <Container maxW="container.4xl">
+          <Container maxW="-moz-fit-content">
             <Stack
               as="article"
               spacing={8}
@@ -83,36 +79,25 @@ const PostScreen: React.FC<PostScreenProps> = () => {
               px={2}
             >
               <Flex
-                mt="40px"
+                mt="30px"
                 flexDirection="column"
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 maxWidth="700px"
                 w="100%"
               >
-                <Heading
-                  letterSpacing="tight"
-                  mb={2}
-                  size="2xl"
-                  fontFamily="sans-serif"
-                >
+                <Heading mb={2} size="2xl">
                   {data?.getPostByslug.title}
                 </Heading>
                 <Flex
                   justify="space-between"
                   align={["initial", "center"]}
-                  alignItems="center"
                   direction={["column", "row"]}
                   mt={2}
                   w="100%"
                   mb={4}
                 >
-                  <Flex
-                    align="center"
-                    mt="20px"
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
+                  <Flex align="center" pt="20px" pb="20px">
                     <Avatar
                       name="Jass"
                       src="https://bit.ly/dan-abramov"
@@ -135,24 +120,25 @@ const PostScreen: React.FC<PostScreenProps> = () => {
                   src={data?.getPostByslug.featureImage}
                   alt={data?.getPostByslug.slug}
                 />
-                <HighlightedMarkdown>
-                  {data?.getPostByslug.body}
-                </HighlightedMarkdown>
-                <FeatureProjectCard
-                  title="Portfolio"
-                  href="https://jasbirrajrana.live/"
-                  src={
-                    colorMode === "light"
-                      ? "/icons/github-dark.png"
-                      : "/icons/github-light.png"
-                  }
-                  alt="Image of coffee"
-                >
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s
-                </FeatureProjectCard>
               </Flex>
+              <HighlightedMarkdown>
+                {data?.getPostByslug.body}
+              </HighlightedMarkdown>
+
+              <FeatureProjectCard
+                title="Portfolio"
+                href="https://jasbirrajrana.live/"
+                src={
+                  colorMode === "light"
+                    ? "/icons/github-dark.png"
+                    : "/icons/github-light.png"
+                }
+                alt="Image of coffee"
+              >
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s
+              </FeatureProjectCard>
             </Stack>
           </Container>
         </>

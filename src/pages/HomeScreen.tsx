@@ -1,5 +1,6 @@
 import { Heading } from "@chakra-ui/layout";
 import React from "react";
+import HelmetSeo from "../components/HelmetSeo";
 import Loader from "../components/Loader/Loader";
 import PostContainer from "../components/PostContainer";
 import { useGetPostsQuery } from "../generated/graphql";
@@ -21,6 +22,10 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
         data.getAllPosts.map((x, i) => {
           return (
             <>
+              <HelmetSeo
+                title="Posts | jasbirrajrana"
+                content={x.description}
+              />
               <PostContainer
                 title={x.title}
                 description={x.description}

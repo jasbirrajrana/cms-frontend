@@ -149,7 +149,7 @@ export type GetPostQuery = (
   { __typename?: 'Query' }
   & { getPostByslug: (
     { __typename?: 'Post' }
-    & Pick<Post, '_id' | 'slug' | 'createdAt' | 'updatedAt' | 'body' | 'featureImage' | 'title'>
+    & Pick<Post, '_id' | 'slug' | 'createdAt' | 'updatedAt' | 'body' | 'featureImage' | 'title' | 'description'>
     & { author: (
       { __typename?: 'User' }
       & Pick<User, '_id' | 'username' | 'email'>
@@ -286,6 +286,7 @@ export const GetPostDocument = gql`
     body
     featureImage
     title
+    description
     author {
       _id
       username

@@ -42,6 +42,7 @@ export const P = ({ children, ...props }) => (
     {children}
   </Text>
 );
+
 export const Hr = (props) => {
   const { colorMode } = useColorMode();
   const borderColor = {

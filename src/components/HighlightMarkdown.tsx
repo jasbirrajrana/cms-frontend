@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Markdown from "markdown-to-jsx";
-import hljs from "highlight.js";
 import Prism from "prismjs";
-// import "highlight.js/styles/atom-one-dark.css";
 import {
   H_1,
   H_2,
@@ -14,7 +12,6 @@ import {
   Hr,
   Quote,
   ImageC,
-  InlineCode,
 } from "./md/MDXcomponents";
 
 interface HighlightedMarkdownProps {
@@ -26,7 +23,6 @@ const HighlightedMarkdown = ({ children }: HighlightedMarkdownProps) => {
 
   useEffect(() => {
     rootRef.current.querySelectorAll("pre code").forEach((block: any) => {
-      //   hljs.highlightBlock(block);
       Prism.highlightElement(block);
     });
   }, [children]);
