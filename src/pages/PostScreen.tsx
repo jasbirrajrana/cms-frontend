@@ -125,7 +125,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
                 {data?.getPostByslug.body}
               </HighlightedMarkdown>
 
-              <FeatureProjectCard
+              {/* <FeatureProjectCard
                 title="Portfolio"
                 href="https://jasbirrajrana.live/"
                 src={
@@ -138,7 +138,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s
-              </FeatureProjectCard>
+              </FeatureProjectCard> */}
             </Stack>
           </Container>
         </>

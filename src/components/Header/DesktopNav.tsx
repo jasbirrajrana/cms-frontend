@@ -1,9 +1,10 @@
 import { useColorModeValue } from "@chakra-ui/react";
-import { Box, Link, Stack, Text } from "@chakra-ui/layout";
+import { Box, Stack, Link, Text } from "@chakra-ui/layout";
 import { Popover, PopoverContent, PopoverTrigger } from "@chakra-ui/popover";
 import React from "react";
 import { NAV_ITEMS } from "./NavItems";
 import DesktopSubNav from "./DesktopSubNav";
+import { Link as RLink } from "react-router-dom";
 interface DesktopNavProps {}
 
 const DesktopNav: React.FC<DesktopNavProps> = () => {
@@ -25,7 +26,7 @@ const DesktopNav: React.FC<DesktopNavProps> = () => {
                     // color: useColorModeValue("gray.800", "white"),
                   }}
                 >
-                  {navItem.label}
+                  <RLink to={`${navItem.href}`}>{navItem.label}</RLink>
                 </Link>
               </PopoverTrigger>
 

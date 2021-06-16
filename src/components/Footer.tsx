@@ -17,69 +17,78 @@ const Footer: React.FC<FooterProps> = () => {
 
   return (
     <>
-      <Flex
-        alignSelf="flex-end"
-        padding="13px"
-        direction="row"
-        align="center"
-        display={["none", "flex", "flex"]}
-        justifyContent="space-around"
+      <Box
+        as="footer"
+        role="contentinfo"
+        mx="auto"
+        maxW="7xl"
+        py="12"
+        px={{ base: "4", md: "8" }}
       >
-        <Box color="gray.400">Made with ❤️ by @jasbirrajrana</Box>
         <Flex
+          alignSelf="flex-end"
+          padding="13px"
+          direction="row"
           align="center"
-          mb={4}
-          direction="column"
           display={["none", "flex", "flex"]}
+          justifyContent="space-around"
         >
-          <div>
-            <a href="https://twitter.com/jasbirrajrana" title="Twitter">
-              <IconButton
-                aria-label="Twitter"
-                icon={<FiTwitter />}
-                size="lg"
-                color={borderIcon[colorMode]}
-                variant="ghost"
-                _hover={{ backgroundColor: footerHoverBg[colorMode] }}
-              />
-            </a>
-            <a href="https://github.com/jasbirrajrana" title="GitHub">
-              <IconButton
-                aria-label="GitHub"
-                icon={<FiGithub />}
-                size="lg"
-                color={borderIcon[colorMode]}
-                variant="ghost"
-                _hover={{ backgroundColor: footerHoverBg[colorMode] }}
-              />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jasbirrajrana"
-              title="LinkedIn"
-            >
-              <IconButton
-                aria-label="LinkedIn"
-                icon={<FiLinkedin />}
-                size="lg"
-                color={borderIcon[colorMode]}
-                variant="ghost"
-                _hover={{ backgroundColor: footerHoverBg[colorMode] }}
-              />
-            </a>
+          <Box color="gray.400">Made with ❤️ by @jasbirrajrana</Box>
+          <Flex
+            align="center"
+            mb={4}
+            direction="column"
+            display={["none", "flex", "flex"]}
+          >
+            <div>
+              <a href="https://twitter.com/jasbirrajrana" title="Twitter">
+                <IconButton
+                  aria-label="Twitter"
+                  icon={<FiTwitter />}
+                  size="lg"
+                  color={borderIcon[colorMode]}
+                  variant="ghost"
+                  _hover={{ backgroundColor: footerHoverBg[colorMode] }}
+                />
+              </a>
+              <a href="https://github.com/jasbirrajrana" title="GitHub">
+                <IconButton
+                  aria-label="GitHub"
+                  icon={<FiGithub />}
+                  size="lg"
+                  color={borderIcon[colorMode]}
+                  variant="ghost"
+                  _hover={{ backgroundColor: footerHoverBg[colorMode] }}
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jasbirrajrana"
+                title="LinkedIn"
+              >
+                <IconButton
+                  aria-label="LinkedIn"
+                  icon={<FiLinkedin />}
+                  size="lg"
+                  color={borderIcon[colorMode]}
+                  variant="ghost"
+                  _hover={{ backgroundColor: footerHoverBg[colorMode] }}
+                />
+              </a>
 
-            <a href="mailto:jasbirrajrana6699@gmail.com" title="Email">
-              <IconButton
-                aria-label="Email"
-                icon={<FiMail />}
-                size="lg"
-                color={borderIcon[colorMode]}
-                variant="ghost"
-                _hover={{ backgroundColor: footerHoverBg[colorMode] }}
-              />
-            </a>
-          </div>
+              <a href="mailto:jasbirrajrana6699@gmail.com" title="Email">
+                <IconButton
+                  aria-label="Email"
+                  icon={<FiMail />}
+                  size="lg"
+                  color={borderIcon[colorMode]}
+                  variant="ghost"
+                  _hover={{ backgroundColor: footerHoverBg[colorMode] }}
+                />
+              </a>
+            </div>
+          </Flex>
         </Flex>
-      </Flex>
+      </Box>
     </>
   );
 };

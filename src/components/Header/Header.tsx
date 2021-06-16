@@ -58,11 +58,11 @@ const Header: React.FC<HeaderProps> = () => {
             justify={{ base: "center", md: "start" }}
             alignItems="center"
           >
-            {!isSmallThan730 && (
+            {/* {!isSmallThan730 && (
               <Link to="/">
                 <Heading>Logo</Heading>
               </Link>
-            )}
+            )} */}
 
             <Flex display={{ base: "none", md: "flex" }} ml={10}>
               <DesktopNav />

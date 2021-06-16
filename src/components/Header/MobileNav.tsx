@@ -18,7 +18,6 @@ const MobileNav: React.FC<MobileNavProps> = () => {
         p={4}
         display={{ md: "none" }}
       >
-        <Heading>Logo</Heading>
         {NAV_ITEMS.map((navItem) => (
           <MobileNavItem key={navItem.label} {...navItem} />
         ))}

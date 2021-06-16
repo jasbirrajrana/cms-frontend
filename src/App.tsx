@@ -14,6 +14,7 @@ import OtpPage from "./pages/OtpPage";
 import UserConfirm from "./pages/UserConfirm";
 import PostScreen from "./pages/PostScreen";
 import Footer from "./components/Footer";
+import AboutScreen from "./pages/AboutScreen";
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
@@ -39,6 +40,7 @@ const App: React.FC<AppProps> = () => {
           <Route path="/user/confirm/:token" component={UserConfirm} />
           <Route path="/otp" component={OtpPage} />
           <Route path="/post/:slug" component={PostScreen} />
+          <Route path="/about" component={AboutScreen} />
         </Switch>
         <Footer />
       </BrowserRouter>
