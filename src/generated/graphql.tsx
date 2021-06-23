@@ -110,6 +110,7 @@ export type User = {
   username: Scalars['String'];
   email: Scalars['String'];
   isVerfied: Scalars['Boolean'];
+  isAdmin: Scalars['Boolean'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
 };
@@ -207,7 +208,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'username' | '_id' | 'email'>
+    & Pick<User, 'username' | '_id' | 'email' | 'isAdmin'>
   )> }
 );
 
@@ -449,6 +450,7 @@ export const MeDocument = gql`
     username
     _id
     email
+    isAdmin
   }
 }
     `;

@@ -3,5 +3,6 @@ query Me {
     username
     _id
     email
+    isAdmin
   }
 }

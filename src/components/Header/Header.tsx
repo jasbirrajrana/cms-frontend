@@ -2,7 +2,7 @@ import { Button, IconButton } from "@chakra-ui/button";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, Stack } from "@chakra-ui/layout";
+import { Box, Flex, Stack } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { Collapse } from "@chakra-ui/transition";
 import React, { useContext } from "react";

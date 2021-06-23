@@ -1,5 +1,6 @@
 {
   "name": "web",
+  "proxy":"http://localhost:4000/graphql",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

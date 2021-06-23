@@ -7,11 +7,15 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/menu";
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth";
 
 interface DropDownProps {}
 
 const DropDown: React.FC<DropDownProps> = () => {
+  const { user } = useContext(AuthContext);
+  
   return (
     <>
       <Menu>
@@ -20,7 +24,14 @@ const DropDown: React.FC<DropDownProps> = () => {
         </MenuButton>
         <MenuList>
           <MenuGroup title="Profile">
-            <MenuItem>My Account</MenuItem>
+            {user && user.isAdmin && (
+               <MenuItem>
+              <Link to="/new">
+              New Article
+              </Link>
+            </MenuItem>
+            )}
+           
             <MenuItem>Payments </MenuItem>
           </MenuGroup>
           <MenuDivider />

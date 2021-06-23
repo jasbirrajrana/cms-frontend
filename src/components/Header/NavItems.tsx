@@ -7,6 +7,10 @@ interface NavItem {
 
 export const NAV_ITEMS: Array<NavItem> = [
   {
+    label: "Articles",
+    href: "/",
+  },
+  {
     label: "About me",
     href: "/about",
   },
