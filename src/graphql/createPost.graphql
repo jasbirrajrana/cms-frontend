@@ -1,0 +1,17 @@
+mutation CreatePost(
+  $title: String!
+  $body: String!
+  $description: String!
+  $tag: String!
+  $subtitle: String!
+  $featureImage: Upload!
+) {
+  createPost(
+    title: $title
+    body: $body
+    description: $description
+    tag: $tag
+    subtitle: $subtitle
+    featureImage: $featureImage
+  )
+}
