@@ -8,7 +8,9 @@ import { isOdd } from "../utils/isOdd";
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
-  const { loading, error, data } = useGetPostsQuery();
+  const { loading, error, data } = useGetPostsQuery({
+    fetchPolicy: "network-only",
+  });
   if (loading) {
     return <Loader />;
   }

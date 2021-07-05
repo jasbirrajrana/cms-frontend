@@ -4,7 +4,7 @@ mutation CreatePost(
   $description: String!
   $tag: String!
   $subtitle: String!
-  $featureImage: Upload!
+  $featureImage: String!
 ) {
   createPost(
     title: $title

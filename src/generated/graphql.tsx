@@ -14,8 +14,6 @@ export type Scalars = {
   Float: number;
   /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
   DateTime: any;
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any;
 };
 
 
@@ -51,7 +49,7 @@ export type MutationRegisterArgs = {
 
 export type MutationCreatePostArgs = {
   tag: Scalars['String'];
-  featureImage: Scalars['Upload'];
+  featureImage: Scalars['String'];
   description?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   body: Scalars['String'];
@@ -107,7 +105,6 @@ export type QueryGetPostByslugArgs = {
   slug: Scalars['String'];
 };
 
-
 export type User = {
   __typename?: 'User';
   _id: Scalars['String'];
@@ -151,7 +148,7 @@ export type CreatePostMutationVariables = Exact<{
   description: Scalars['String'];
   tag: Scalars['String'];
   subtitle: Scalars['String'];
-  featureImage: Scalars['Upload'];
+  featureImage: Scalars['String'];
 }>;
 
 
@@ -297,7 +294,7 @@ export type ConfirmUserMutationHookResult = ReturnType<typeof useConfirmUserMuta
 export type ConfirmUserMutationResult = Apollo.MutationResult<ConfirmUserMutation>;
 export type ConfirmUserMutationOptions = Apollo.BaseMutationOptions<ConfirmUserMutation, ConfirmUserMutationVariables>;
 export const CreatePostDocument = gql`
-    mutation CreatePost($title: String!, $body: String!, $description: String!, $tag: String!, $subtitle: String!, $featureImage: Upload!) {
+    mutation CreatePost($title: String!, $body: String!, $description: String!, $tag: String!, $subtitle: String!, $featureImage: String!) {
   createPost(
     title: $title
     body: $body

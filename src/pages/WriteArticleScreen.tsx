@@ -4,9 +4,11 @@ import React, { useCallback } from "react";
 import Field from "../components/Field";
 import { useDropzone } from "react-dropzone";
 import { useCreatePostMutation } from "../generated/graphql";
-interface WriteArticleScreenProps {}
+import Loader from "../components/Loader/Loader";
+import { RouteComponentProps } from "react-router-dom";
+interface WriteArticleScreenProps extends RouteComponentProps<any> {}
 
-const WriteArticleScreen: React.FC<WriteArticleScreenProps> = () => {
+const WriteArticleScreen: React.FC<WriteArticleScreenProps> = ({ history }) => {
   const [createPost, { loading }] = useCreatePostMutation();
   // const onDrop = useCallback(
   //   ([file]) => {
@@ -19,6 +21,7 @@ const WriteArticleScreen: React.FC<WriteArticleScreenProps> = () => {
 
   return (
     <>
+      {loading && <Loader />}
       <Heading ml="25px" mt="25px">
         New Article
       </Heading>
@@ -31,12 +34,30 @@ const WriteArticleScreen: React.FC<WriteArticleScreenProps> = () => {
                 body: "",
                 description: "",
                 subtitle: "",
+                featureImage: "",
                 tag: "",
               }}
-              onSubmit={async ({ title, body, description, subtitle, tag }) => {
+              onSubmit={async ({
+                title,
+                body,
+                description,
+                subtitle,
+                tag,
+                featureImage,
+              }) => {
                 const response = await createPost({
-                  variables: { title, body, description, subtitle, tag }, //todo
+                  variables: {
+                    title,
+                    body,
+                    description,
+                    subtitle,
+                    tag,
+                    featureImage,
+                  },
                 });
+                if (response.data?.createPost) {
+                  history.push("/");
+                }
               }}
             >
               {() => (
@@ -52,6 +73,11 @@ const WriteArticleScreen: React.FC<WriteArticleScreenProps> = () => {
                       name="description"
                       label="Description"
                       placeholder="description"
+                    />
+                    <Field
+                      name="featureImage"
+                      label="Feature Image"
+                      placeholder="url of image.."
                     />
 
                     <Field name="tag" label="Tag" placeholder="tag" />
