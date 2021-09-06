@@ -1,0 +1,11 @@
+query getAllUsers {
+  getAllUsers {
+    username
+    isAdmin
+    isSuperAdmin
+    _id
+    email
+    createdAt
+    updatedAt
+  }
+}

@@ -1,15 +1,18 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Center, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import { LinkBox, useDisclosure, useMergeRefs } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import React, { useContext } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
+import ChakraLink from "../components/ChakraLink";
 import Field from "../components/Field";
 import HelmetSeo from "../components/HelmetSeo";
 import { AuthContext } from "../context/auth";
 import { MeDocument, MeQuery, useLoginMutation } from "../generated/graphql";
 import { toMapError } from "../utils/toErrorMap";
 import { validationSchema } from "../utils/yupSchema";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 interface LoginScreenProps extends RouteComponentProps<any> {}
 
@@ -20,12 +23,18 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ history }) => {
 
   return (
     <>
-      <Center minH="100vh">
+      <Center
+        mt="70px"
+        display="flex"
+        flexDirection="column"
+        height="90vh"
+        alignItems="center"
+        justifyContent="center">
         <HelmetSeo
           title="Login | jasbirrajrana"
           content="Login with Email Id @jasbirrajrana"
         />
-        <Box w={["100%", 400]} padding={isSmallThan490 ? "30px" : "0px"}>
+        <Box w={["100%", 420]} padding={isSmallThan490 ? "30px" : "0px"}>
           <Formik
             validationSchema={validationSchema}
             initialValues={{ email: "", password: "" }}
@@ -40,7 +49,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ history }) => {
                     query: MeDocument,
                     data: {
                       __typename: "Query",
-                      me: data.login.user,
+                      // me: data.login.user,
                     },
                   });
                 },
@@ -51,34 +60,44 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ history }) => {
                 setUser(response.data?.login.user);
                 history.push("/");
               }
-            }}
-          >
+            }}>
             {() => (
               <>
                 <Form>
-                  <Stack spacing={2}>
-                    <Heading>Login</Heading>
-
+                  <Stack spacing="6">
+                    <Heading
+                      textAlign="center"
+                      size="xl"
+                      fontWeight="extrabold">
+                      Sign in to your account
+                    </Heading>
                     <Field name="email" label="Email" placeholder="email" />
                     <Field
                       name="password"
                       type="password"
                       label="Password"
+                      required={true}
                       placeholder="password"
                     />
 
                     <Button
-                      colorScheme="red"
                       type="submit"
+                      colorScheme="blue"
+                      size="lg"
+                      fontSize="md"
                       isFullWidth
                       isLoading={loading}
-                      isDisabled={loading}
-                    >
+                      isDisabled={loading}>
                       Login
                     </Button>
                     <Box display="flex" mt="10px">
                       <Text mr="10px">Not have an account?</Text>
-                      <Link to="/register">Register</Link>
+                      <LinkBox
+                        fontWeight="bold"
+                        color="orange"
+                        textDecoration="underline">
+                        <Link to="/register">Register</Link>
+                      </LinkBox>
                     </Box>
                   </Stack>
                 </Form>

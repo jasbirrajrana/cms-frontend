@@ -14,6 +14,8 @@ export type Scalars = {
   Float: number;
   /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
   DateTime: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
 
@@ -31,6 +33,7 @@ export type Mutation = {
   createPost: Scalars['Boolean'];
   updatePost: Post;
   confirmUser: UserResponse;
+  upload: Scalars['String'];
 };
 
 
@@ -70,6 +73,11 @@ export type MutationConfirmUserArgs = {
   token: Scalars['String'];
 };
 
+
+export type MutationUploadArgs = {
+  file: Scalars['Upload'];
+};
+
 export type Post = {
   __typename?: 'Post';
   _id: Scalars['String'];
@@ -90,6 +98,7 @@ export type Query = {
   hello?: Maybe<Scalars['String']>;
   me?: Maybe<User>;
   getPosts: Array<Post>;
+  getAllUsers: Array<User>;
   getMyPosts: Array<Post>;
   getPostByslug: Post;
   getAllPosts: Array<Post>;
@@ -105,6 +114,7 @@ export type QueryGetPostByslugArgs = {
   slug: Scalars['String'];
 };
 
+
 export type User = {
   __typename?: 'User';
   _id: Scalars['String'];
@@ -112,6 +122,7 @@ export type User = {
   email: Scalars['String'];
   isVerfied: Scalars['Boolean'];
   isAdmin: Scalars['Boolean'];
+  isSuperAdmin: Scalars['Boolean'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
 };
@@ -189,6 +200,17 @@ export type GetPostsQuery = (
   )> }
 );
 
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllUsersQuery = (
+  { __typename?: 'Query' }
+  & { getAllUsers: Array<(
+    { __typename?: 'User' }
+    & Pick<User, 'username' | 'isAdmin' | 'isSuperAdmin' | '_id' | 'email' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -204,7 +226,7 @@ export type LoginMutation = (
       & Pick<FieldError, 'field' | 'message'>
     )>>, user?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'username' | 'email' | '_id' | 'createdAt' | 'updatedAt'>
+      & Pick<User, 'username' | 'email' | 'isAdmin' | '_id' | 'createdAt' | 'updatedAt'>
     )> }
   ) }
 );
@@ -224,7 +246,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me?: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'username' | '_id' | 'email' | 'isAdmin'>
+    & Pick<User, 'username' | '_id' | 'email' | 'isAdmin' | 'isSuperAdmin'>
   )> }
 );
 
@@ -247,6 +269,16 @@ export type RegisterMutation = (
       & Pick<User, 'username' | 'email' | '_id' | 'createdAt' | 'updatedAt'>
     )> }
   ) }
+);
+
+export type UploadMutationVariables = Exact<{
+  file: Scalars['Upload'];
+}>;
+
+
+export type UploadMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'upload'>
 );
 
 
@@ -429,6 +461,46 @@ export function useGetPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetPostsQueryHookResult = ReturnType<typeof useGetPostsQuery>;
 export type GetPostsLazyQueryHookResult = ReturnType<typeof useGetPostsLazyQuery>;
 export type GetPostsQueryResult = Apollo.QueryResult<GetPostsQuery, GetPostsQueryVariables>;
+export const GetAllUsersDocument = gql`
+    query getAllUsers {
+  getAllUsers {
+    username
+    isAdmin
+    isSuperAdmin
+    _id
+    email
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useGetAllUsersQuery__
+ *
+ * To run a query within a React component, call `useGetAllUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllUsersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllUsersQuery(baseOptions?: Apollo.QueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(GetAllUsersDocument, options);
+      }
+export function useGetAllUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(GetAllUsersDocument, options);
+        }
+export type GetAllUsersQueryHookResult = ReturnType<typeof useGetAllUsersQuery>;
+export type GetAllUsersLazyQueryHookResult = ReturnType<typeof useGetAllUsersLazyQuery>;
+export type GetAllUsersQueryResult = Apollo.QueryResult<GetAllUsersQuery, GetAllUsersQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
@@ -439,6 +511,7 @@ export const LoginDocument = gql`
     user {
       username
       email
+      isAdmin
       _id
       createdAt
       updatedAt
@@ -510,6 +583,7 @@ export const MeDocument = gql`
     _id
     email
     isAdmin
+    isSuperAdmin
   }
 }
     `;
@@ -585,3 +659,34 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const UploadDocument = gql`
+    mutation upload($file: Upload!) {
+  upload(file: $file)
+}
+    `;
+export type UploadMutationFn = Apollo.MutationFunction<UploadMutation, UploadMutationVariables>;
+
+/**
+ * __useUploadMutation__
+ *
+ * To run a mutation, you first call `useUploadMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUploadMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [uploadMutation, { data, loading, error }] = useUploadMutation({
+ *   variables: {
+ *      file: // value for 'file'
+ *   },
+ * });
+ */
+export function useUploadMutation(baseOptions?: Apollo.MutationHookOptions<UploadMutation, UploadMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UploadMutation, UploadMutationVariables>(UploadDocument, options);
+      }
+export type UploadMutationHookResult = ReturnType<typeof useUploadMutation>;
+export type UploadMutationResult = Apollo.MutationResult<UploadMutation>;
+export type UploadMutationOptions = Apollo.BaseMutationOptions<UploadMutation, UploadMutationVariables>;

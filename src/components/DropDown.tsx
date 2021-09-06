@@ -1,4 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar";
+import { Link as ChakraLink } from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
@@ -15,24 +16,30 @@ interface DropDownProps {}
 
 const DropDown: React.FC<DropDownProps> = () => {
   const { user } = useContext(AuthContext);
-  
+
   return (
     <>
       <Menu>
         <MenuButton>
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
         </MenuButton>
-        <MenuList>
+        <MenuList fontFamily="Ubuntu">
           <MenuGroup title="Profile">
             {user && user.isAdmin && (
-               <MenuItem>
-              <Link to="/new">
-              New Article
-              </Link>
-            </MenuItem>
+              <MenuItem>
+                <ChakraLink _hover={{ textDecoration: "none" }}>
+                  <Link to="/new">New Article</Link>
+                </ChakraLink>
+              </MenuItem>
             )}
-           
-            <MenuItem>Payments </MenuItem>
+
+            {user && user.isSuperAdmin && (
+              <MenuItem>
+                <ChakraLink _hover={{ textDecoration: "none" }}>
+                  <Link to="/users">Users</Link>
+                </ChakraLink>
+              </MenuItem>
+            )}
           </MenuGroup>
           <MenuDivider />
           <MenuGroup title="Help">

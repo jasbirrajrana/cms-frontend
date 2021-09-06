@@ -1,6 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Center, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import { LinkBox } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/toast";
 import { Form, Formik } from "formik";
 import React, { useContext } from "react";
@@ -21,12 +22,12 @@ const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
   // const { setUser } = useContext(AuthContext);
   return (
     <>
-      <Center minH="80vh">
+      <Center minH="80vh" mt="70px">
         <HelmetSeo
           title="Register | jasbirrajrana"
           content="Register with Email Id @jasbirrajrana"
         />
-        <Box w={["100%", 400]} padding={isSmallThan490 ? "30px" : "0px"}>
+        <Box w={["100%", 450]} padding={isSmallThan490 ? "30px" : "0px"}>
           <Formik
             validationSchema={validationSchema}
             initialValues={{ username: "", email: "", password: "" }}
@@ -48,13 +49,17 @@ const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
                   isClosable: true,
                 });
               }
-            }}
-          >
+            }}>
             {() => (
               <>
                 <Form>
-                  <Stack spacing={2}>
-                    <Heading>Register</Heading>
+                  <Stack spacing={6}>
+                    <Heading
+                      textAlign="center"
+                      size="xl"
+                      fontWeight="extrabold">
+                      Sign in to your account
+                    </Heading>
                     <Field
                       name="username"
                       label="username"
@@ -73,13 +78,17 @@ const RegisterScreen: React.FC<RegisterProps> = ({ history }) => {
                       type="submit"
                       isFullWidth
                       isLoading={loading}
-                      isDisabled={loading}
-                    >
+                      isDisabled={loading}>
                       Register
                     </Button>
                     <Box display="flex" mt="10px">
                       <Text mr="10px">Already have an account?</Text>
-                      <Link to="/login">Login</Link>
+                      <LinkBox
+                        fontWeight="bold"
+                        color="orange"
+                        textDecoration="underline">
+                        <Link to="/login">Login</Link>
+                      </LinkBox>
                     </Box>
                   </Stack>
                 </Form>

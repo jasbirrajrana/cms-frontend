@@ -40,9 +40,7 @@ const Field: React.FC<FieldProps> = ({
               display="flex"
               flexDirection="row"
               alignItems="center"
-              justifyContent="space-between"
-            >
-              <FormErrorIcon />
+              justifyContent="space-between">
               <FormErrorMessage>{error}</FormErrorMessage>{" "}
             </Flex>
           </>

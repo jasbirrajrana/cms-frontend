@@ -10,12 +10,15 @@ const prismBaseTheme = css`
   pre[class*="language-"] {
     color: ${theme.colors.gray[800]};
     background: none;
-    font-family: ${theme.fonts.mono};
-    font-size: ${theme.fontSizes[2]};
+
+    font-family: "Ubuntu Mono";
+    font-size: 1.2rem;
+    /* font-size: ${theme.fontSizes[2]}; */
     text-align: left;
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
+    letter-spacing: 0.01rem;
     line-height: ${theme.lineHeights[2]};
     -moz-tab-size: 4;
     -o-tab-size: 4;
@@ -34,7 +37,7 @@ const prismBaseTheme = css`
     margin: ${theme.space[6]} 0;
     overflow: auto;
     min-width: 100%;
-    font-size: 0.7rem;
+    font-size: 1rem;
     white-space: nowrap;
     width: 100%;
   }
@@ -128,7 +131,7 @@ const prismBaseTheme = css`
     border: 1px solid ${theme.colors.gray[200]};
     border-top-left-radius: ${theme.radii.lg};
     border-top-right-radius: ${theme.radii.lg};
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 0;
     width: 100%;

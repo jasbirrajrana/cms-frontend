@@ -13,33 +13,35 @@ import DropDown from "../DropDown";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import { useLogout_MeMutation } from "../../generated/graphql";
+import { Image, useColorMode } from "@chakra-ui/react";
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
+  const { toggleColorMode } = useColorMode();
+
+  const text = useColorModeValue("dark", "light");
   const [isSmallThan730] = useMediaQuery("(max-width: 730px)");
   const { isOpen, onToggle } = useDisclosure();
   const { user } = useContext(AuthContext);
   const [logout, { client }] = useLogout_MeMutation();
   return (
     <>
-      <Box>
+      <Box position="fixed" width="100%" top="0" zIndex="modal">
         <Flex
           bg={useColorModeValue("white", "gray.800")}
           color={useColorModeValue("gray.600", "white")}
           minH={"60px"}
-          py={{ base: 2 }}
-          px={{ base: 4 }}
+          py={{ base: 6 }}
+          px={{ base: 12 }}
           borderBottom={1}
           borderStyle={"solid"}
           borderColor={useColorModeValue("gray.200", "gray.900")}
-          align={"center"}
-        >
+          align={"center"}>
           <Flex
             flex={{ base: 1, md: "auto" }}
             ml={{ base: -2 }}
-            display={{ base: "flex", md: "none" }}
-          >
+            display={{ base: "flex", md: "none" }}>
             <IconButton
               onClick={onToggle}
               icon={
@@ -56,15 +58,17 @@ const Header: React.FC<HeaderProps> = () => {
           <Flex
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
-            alignItems="center"
-          >
-            {/* {!isSmallThan730 && (
-              <Link to="/">
-                <Heading>Logo</Heading>
-              </Link>
-            )} */}
+            alignItems="center">
+            <Image
+              src={text === "dark" ? "/logo.png" : "/logo-white.png"}
+              alt="logo"
+              position="absolute"
+              boxSize="100px"
+              objectFit="contain"
+              display="block"
+            />
 
-            <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <Flex display={{ base: "none", md: "flex" }} ml={150}>
               <DesktopNav />
             </Flex>
           </Flex>
@@ -73,8 +77,7 @@ const Header: React.FC<HeaderProps> = () => {
             justify={"flex-end"}
             direction={"row"}
             spacing={6}
-            alignItems="center"
-          >
+            alignItems="center">
             {user ? (
               <>
                 <DropDown />
@@ -83,8 +86,7 @@ const Header: React.FC<HeaderProps> = () => {
                   onClick={async () => {
                     await logout();
                     client.cache.reset();
-                  }}
-                >
+                  }}>
                   Logout
                 </Button>
               </>
@@ -98,8 +100,7 @@ const Header: React.FC<HeaderProps> = () => {
                   bg={"pink.400"}
                   _hover={{
                     bg: "pink.300",
-                  }}
-                >
+                  }}>
                   Sign In
                 </Button>
               </Link>

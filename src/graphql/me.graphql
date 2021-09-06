@@ -4,5 +4,6 @@ query Me {
     _id
     email
     isAdmin
+    isSuperAdmin
   }
 }

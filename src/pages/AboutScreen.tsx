@@ -1,88 +1,78 @@
-import {
-  Box,
-  Container,
-  Heading,
-  HStack,
-  Image,
-  Text,
-  Flex,
-  VStack,
-  Button,
-} from "@chakra-ui/react";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { Box, Heading, Text, VStack, Wrap } from "@chakra-ui/react";
 import React from "react";
-
+import CenterContainer from "../components/CenterContainer";
+import InterestTag from "../components/InterestTag";
+import interests from "../data/interests.json";
 interface AboutScreenProps {}
 
 const AboutScreen: React.FC<AboutScreenProps> = () => {
   return (
     <>
-      <Container>
-        <Box
-          as="main"
-          display="flex"
-          alignItems="center"
-          flexDirection="column"
-          m="0 auto 0rem auto"
-          maxWidth="700px"
-        >
-          <Flex
-            width="100%"
-            marginTop="18px"
-            marginBottom="18px"
-            alignItems="center"
-          >
-            <Box
-              bg="white"
-              color="gray.900"
-              rounded="full"
-              p={1}
-              w={100}
-              h={100}
-            >
-              <Image
-                src="/icons/me.png"
-                alt="Nirmalya Ghosh"
-                height={100}
-                width={100}
-                quality={100}
-                priority
-              />
-            </Box>
-            <Box>
-              <VStack spacing={2} align="left" marginLeft="24px">
-                <Heading as="h1" size="xl">
-                  Jasbir Raj Rana
-                </Heading>
-                <Text>A little bit about me</Text>
+      <Box mt="100px">
+        <CenterContainer>
+          <VStack spacing={8}>
+            <CenterContainer>
+              <VStack align="start">
+                <Heading as="h1">About</Heading>
+                <Text>
+                  After school, I studied Media and Communications for Digital
+                  Business in Aachen, Germany. It was at that time, where I
+                  found my passion for Design, Technology and being an
+                  Entrepreneur. In my free time, I always liked to follow my
+                  curiosity, learn new things and explore the far corners of the
+                  internet. In my evenings I like to read books, write articles,
+                  code things, play tennis, cook and spend time with my favorite
+                  people in life.
+                </Text>
               </VStack>
-            </Box>
-          </Flex>
-          <Box marginTop="23px">
-            <Text fontStyle="italic" fontWeight="bold">
-              Computer Science Engineer having interest in web-development and
-              design with an eye for detail.
-            </Text>
-          </Box>
-          <Box marginTop="21px">
-            <Text>
-              I'm also a big fan of React.js and have around 2 years experience
-              with it. I have also fiddled with Nodejs and GraphQl. I'm eager to
-              learn new frameworks, libraries and languages like Angularjs,
-              Vue.js and Ruby.
-            </Text>
-          </Box>
-          <Box marginTop="21px">
-            <Text>
-              Though I spend most of my time writing code for building User
-              Interfaces using reactjs ❤️, I also like enjoying working in the
-              intersection of design and development. I feel most productive
-              when I'm able to design User Interfaces which not only look good
-              but has a good performance as well :)
-            </Text>
-          </Box>
-        </Box>
-      </Container>
+            </CenterContainer>
+            <CenterContainer>
+              <VStack align="stretch" spacing={4}>
+                <Heading as="h3" size="lg">
+                  Work
+                </Heading>
+                <Text>
+                  Two semesters into university I co-founded a company called{" "}
+                  <a href="https://crisp.studio/">Crisp Studio</a> with my good
+                  friend
+                  <a href="https://www.linkedin.com/in/renenauheimer/">
+                    René Nauheimer
+                  </a>
+                  . Over time, the company evolved into a small, specialised
+                  studio that helps organisations to solve important challenges
+                  with Sprints and Workshops. In my role, I'm focused on
+                  strategy, healthy growth and charming clients (I try my best).
+                  The journey of building this company from the ground up has
+                  been one of the most satisfying experiences in my life. Head
+                  over to my{" "}
+                  <a href="https://www.linkedin.com/in/wirtzdan/"> LinkedIn</a>,
+                  if you want to connect with my professionally.
+                </Text>
+              </VStack>
+            </CenterContainer>
+            <CenterContainer>
+              <VStack align="stretch" spacing={4}>
+                <Heading as="h2">😁</Heading>
+                <Wrap>
+                  {interests.like.map((el) => (
+                    <InterestTag name={el} like />
+                  ))}
+                </Wrap>
+              </VStack>
+            </CenterContainer>
+            <CenterContainer>
+              <VStack align="stretch" spacing={4}>
+                <Heading as="h2">😒</Heading>
+                <Wrap>
+                  {interests.dislike.map((el) => (
+                    <InterestTag name={el} />
+                  ))}
+                </Wrap>
+              </VStack>
+            </CenterContainer>
+          </VStack>
+        </CenterContainer>
+      </Box>
     </>
   );
 };

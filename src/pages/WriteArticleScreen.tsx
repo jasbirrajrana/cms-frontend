@@ -1,31 +1,43 @@
-import { Box, Button, Container, Flex, Heading, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Stack,
+  Input,
+} from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Field from "../components/Field";
 import { useDropzone } from "react-dropzone";
-import { useCreatePostMutation } from "../generated/graphql";
+import { useCreatePostMutation, useUploadMutation } from "../generated/graphql";
 import Loader from "../components/Loader/Loader";
 import { RouteComponentProps } from "react-router-dom";
 interface WriteArticleScreenProps extends RouteComponentProps<any> {}
 
 const WriteArticleScreen: React.FC<WriteArticleScreenProps> = ({ history }) => {
   const [createPost, { loading }] = useCreatePostMutation();
-  // const onDrop = useCallback(
-  //   ([file]) => {
+  const [upload, { error }] = useUploadMutation();
+  const [uploadFile, setUploadFile] = useState();
+  const handleReadImage = (e: any) => {
+    // let reader = new FileReader();
+    setUploadFile(e.target.files[0]);
+  };
 
-  //   },
-  //   [file]
-  // );
-
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
+  console.log(uploadFile);
+  const uploadImage = async () => {
+    const response = await upload({ variables: { file: uploadFile } });
+    console.log(response);
+    console.log(error);
+  };
   return (
     <>
       {loading && <Loader />}
       <Heading ml="25px" mt="25px">
         New Article
       </Heading>
-      <Flex flexDirection="column" alignItems="center">
+      <Flex flexDirection="column" alignItems="center" mt="34px">
         <Box w={["100%", 500]}>
           <Container maxW="-moz-fit-content">
             <Formik
@@ -45,21 +57,25 @@ const WriteArticleScreen: React.FC<WriteArticleScreenProps> = ({ history }) => {
                 tag,
                 featureImage,
               }) => {
-                const response = await createPost({
-                  variables: {
-                    title,
-                    body,
-                    description,
-                    subtitle,
-                    tag,
-                    featureImage,
-                  },
-                });
-                if (response.data?.createPost) {
-                  history.push("/");
+                if (uploadFile) {
+                  const uploadResponse = await upload({
+                    variables: { file: uploadFile },
+                  });
+                  const response = await createPost({
+                    variables: {
+                      title,
+                      body,
+                      description,
+                      subtitle,
+                      tag,
+                      featureImage: uploadResponse.data?.upload as string,
+                    },
+                  });
+                  if (response.data?.createPost) {
+                    history.push("/");
+                  }
                 }
-              }}
-            >
+              }}>
               {() => (
                 <Form>
                   <Stack spacing={4}>
@@ -74,12 +90,22 @@ const WriteArticleScreen: React.FC<WriteArticleScreenProps> = ({ history }) => {
                       label="Description"
                       placeholder="description"
                     />
-                    <Field
+                    {/* <Field
                       name="featureImage"
                       label="Feature Image"
                       placeholder="url of image.."
+                    /> */}
+                    <input
+                      style={{
+                        fontFamily: "Ubuntu",
+                        fontSize: "16px",
+                        outline: "none",
+                        border: "none",
+                      }}
+                      type="file"
+                      accept=".png, .jpg, .jpeg"
+                      onChange={handleReadImage}
                     />
-
                     <Field name="tag" label="Tag" placeholder="tag" />
                     <Field
                       name="body"

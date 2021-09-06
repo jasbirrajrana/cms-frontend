@@ -1,5 +1,4 @@
-import { useColorModeValue } from "@chakra-ui/react";
-import { Box, Stack, Link, Text } from "@chakra-ui/layout";
+import { Box, Stack, Link } from "@chakra-ui/layout";
 import { Popover, PopoverContent, PopoverTrigger } from "@chakra-ui/popover";
 import React from "react";
 import { NAV_ITEMS } from "./NavItems";
@@ -20,12 +19,9 @@ const DesktopNav: React.FC<DesktopNavProps> = () => {
                   href={navItem.href ?? "#"}
                   fontSize={"sm"}
                   fontWeight={500}
-                  //   color={useColorModeValue("gray.600", "gray.200")}
                   _hover={{
                     textDecoration: "none",
-                    // color: useColorModeValue("gray.800", "white"),
-                  }}
-                >
+                  }}>
                   <RLink to={`${navItem.href}`}>{navItem.label}</RLink>
                 </Link>
               </PopoverTrigger>
@@ -34,11 +30,9 @@ const DesktopNav: React.FC<DesktopNavProps> = () => {
                 <PopoverContent
                   border={0}
                   boxShadow={"xl"}
-                  //   bg={useColorModeValue("white", "gray.800")}
                   p={4}
                   rounded={"xl"}
-                  minW={"sm"}
-                >
+                  minW={"sm"}>
                   <Stack>
                     {navItem.children.map((child) => (
                       <>

@@ -39,7 +39,6 @@ const PostContainer: React.FC<PostContainerProps> = ({
   slug,
   body,
 }) => {
-  console.log("---->tag", tag);
   const { text } = readingTime(body);
   return (
     <>
@@ -50,21 +49,18 @@ const PostContainer: React.FC<PostContainerProps> = ({
           justifyContent="center"
           alignItems="flex-start"
           m="0 auto 4rem auto"
-          maxWidth="650px"
-        >
+          maxWidth="650px">
           <Flex
             flexDirection="column"
             justifyContent="flex-start"
             alignItems="flex-start"
-            maxWidth="700px"
-          >
+            maxWidth="700px">
             <Box
               display="flex"
               alignItems="center"
               justifyContent="space-between"
               width="100%"
-              mb="22px"
-            >
+              mb="22px">
               <Text
                 fontSize={"sm"}
                 fontWeight={500}
@@ -72,8 +68,7 @@ const PostContainer: React.FC<PostContainerProps> = ({
                 p={2}
                 px={3}
                 color={"green.500"}
-                rounded={"base"}
-              >
+                rounded={"base"}>
                 {tag}
               </Text>
               <Text color={useColorModeValue("gray.400", "white")}>{text}</Text>
@@ -84,8 +79,7 @@ const PostContainer: React.FC<PostContainerProps> = ({
                 mb={2}
                 as="h1"
                 size="xl"
-                _hover={{ color: "#ffcc29" }}
-              >
+                _hover={{ color: "#ffcc29" }}>
                 {title}
               </Heading>
             </Link>

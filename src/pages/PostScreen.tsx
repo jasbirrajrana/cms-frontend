@@ -13,14 +13,15 @@ import HighlightedMarkdown from "../components/HighlightMarkdown";
 import FeatureProjectCard from "../components/FeatureProjectCard";
 import { useColorMode } from "@chakra-ui/color-mode";
 import HelmetSeo from "../components/HelmetSeo";
-
+import LikeContainer from "../components/LikeContainer";
+import useMediaQuery from "use-mediaquery";
 interface PostScreenProps {}
 
 const PostScreen: React.FC<PostScreenProps> = () => {
   const [width, setWidth] = useState(1);
   const { colorMode } = useColorMode();
   const { slug }: any = useParams();
-  console.log(slug);
+  const matches = useMediaQuery("(max-width: 1280px)");
   const { error, loading, data } = useGetPostQuery({
     variables: { slug },
   });
@@ -29,7 +30,6 @@ const PostScreen: React.FC<PostScreenProps> = () => {
     const j = readingTime(data?.getPostByslug.body!);
     READING_TIME = j.text;
   }
-
   const handleScroll = () => {
     let Scrolled = document.documentElement.scrollTop;
     const MaxHeight =
@@ -38,7 +38,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
     const ScrollPercent = (Scrolled / MaxHeight) * 100;
     setWidth(ScrollPercent);
   };
-
+  console.log("isLargerThan1280", matches);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -57,17 +57,16 @@ const PostScreen: React.FC<PostScreenProps> = () => {
             title={data?.getPostByslug.title}
             content={data?.getPostByslug.description}
           />
-          <Box
+          {/* <Box
             h={1}
             as="div"
             bgGradient="linear(to-r, green.200, pink.500)"
             position="sticky"
             top={0}
             zIndex={100}
-            w={`${width}%`}
-          ></Box>
+            w={`${width}%`}></Box> */}
 
-          <Container maxW="-moz-fit-content">
+          <Container mt="100px">
             <Stack
               as="article"
               spacing={8}
@@ -76,16 +75,14 @@ const PostScreen: React.FC<PostScreenProps> = () => {
               m="0 auto 4rem auto"
               maxWidth="700px"
               w="100%"
-              px={2}
-            >
+              px={2}>
               <Flex
                 mt="30px"
                 flexDirection="column"
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 maxWidth="700px"
-                w="100%"
-              >
+                w="100%">
                 <Heading mb={2} size="2xl">
                   {data?.getPostByslug.title}
                 </Heading>
@@ -95,8 +92,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
                   direction={["column", "row"]}
                   mt={2}
                   w="100%"
-                  mb={4}
-                >
+                  mb={4}>
                   <Flex align="center" pt="20px" pb="20px">
                     <Avatar
                       name="Jass"
@@ -124,7 +120,6 @@ const PostScreen: React.FC<PostScreenProps> = () => {
               <HighlightedMarkdown>
                 {data?.getPostByslug.body}
               </HighlightedMarkdown>
-
               {/* <FeatureProjectCard
                 title="Portfolio"
                 href="https://jasbirrajrana.live/"
@@ -139,6 +134,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
                 industry. Lorem Ipsum has been the industry's standard dummy
                 text ever since the 1500s
               </FeatureProjectCard> */}
+              <LikeContainer />
             </Stack>
           </Container>
         </>

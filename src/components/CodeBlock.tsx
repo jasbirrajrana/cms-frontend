@@ -1,8 +1,12 @@
+//@ts-nocheck
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/github";
 // import Prism from "prism-react-renderer/prism";
-export default (props) => {
+export default (props: {
+  children: { props: { className: string; children: string } };
+}) => {
   const className = props.children.props.className || "";
   const matches = className.match(/language-(?<lang>.*)/);
   return (
@@ -14,8 +18,7 @@ export default (props) => {
           ? matches.groups.lang
           : ""
       }
-      theme={theme}
-    >
+      theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={{ ...style, padding: "20px" }}>
           {tokens.map((line, i) => (

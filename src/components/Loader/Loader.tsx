@@ -1,4 +1,4 @@
-import { Center } from "@chakra-ui/layout";
+import { Box, Center } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 import React from "react";
 interface LoaderProps {}
@@ -6,8 +6,8 @@ interface LoaderProps {}
 const Loader: React.FC<LoaderProps> = () => {
   return (
     <>
-      <Center height="40vh" width="auto">
-        <Spinner size="xl" />
+      <Center position="fixed" top="50%" left="50%">
+        <Spinner size="xl" thickness="3px" />
       </Center>
     </>
   );
