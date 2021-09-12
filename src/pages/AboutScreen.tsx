@@ -1,4 +1,12 @@
-import { Box, Heading, Text, VStack, Wrap } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  VStack,
+  Wrap,
+  Flex,
+  Image,
+} from "@chakra-ui/react";
 import React from "react";
 import CenterContainer from "../components/CenterContainer";
 import InterestTag from "../components/InterestTag";
@@ -13,16 +21,51 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
           <VStack spacing={8}>
             <CenterContainer>
               <VStack align="start">
-                <Heading as="h1">About</Heading>
+                <Flex
+                  width="100%"
+                  marginTop="18px"
+                  marginBottom="18px"
+                  alignItems="center">
+                  <Box
+                    bg="white"
+                    color="gray.900"
+                    rounded="full"
+                    p={0.2}
+                    borderRadius="50%"
+                    border="3px solid orange"
+                    w={100}
+                    h={100}>
+                    <Image
+                      src="/icons/me.png"
+                      alt="Nirmalya Ghosh"
+                      objectFit="contain"
+                      width={100}
+                      quality={100}
+                      priority
+                    />
+                  </Box>
+                  <Box>
+                    <VStack spacing={2} align="left" marginLeft="24px">
+                      <Heading as="h1" size="xl">
+                        Jasbir Raj Rana
+                      </Heading>
+                      <Text>A little bit about me</Text>
+                    </VStack>
+                  </Box>
+                </Flex>
                 <Text>
-                  After school, I studied Media and Communications for Digital
-                  Business in Aachen, Germany. It was at that time, where I
-                  found my passion for Design, Technology and being an
-                  Entrepreneur. In my free time, I always liked to follow my
-                  curiosity, learn new things and explore the far corners of the
-                  internet. In my evenings I like to read books, write articles,
-                  code things, play tennis, cook and spend time with my favorite
-                  people in life.
+                  Hi I'm Jasbir Raj Rana a Full stack Web Developer focused on
+                  great web experiences. Designing and Coding have been my
+                  passion since the days I started working with computers but I
+                  found myself into web design/development since 2019. I enjoy
+                  creating beautifully designed, intuitive and functional
+                  websites.
+                </Text>
+                <Text>
+                  I'm also a big fan of React.js and have around 2 years
+                  experience with it. I have also fiddled with Nodejs and
+                  GraphQl. I'm eager to learn new frameworks, libraries and
+                  languages like Angularjs, Vue.js and Ruby.
                 </Text>
               </VStack>
             </CenterContainer>
@@ -32,25 +75,15 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
                   Work
                 </Heading>
                 <Text>
-                  Two semesters into university I co-founded a company called{" "}
-                  <a href="https://crisp.studio/">Crisp Studio</a> with my good
-                  friend
-                  <a href="https://www.linkedin.com/in/renenauheimer/">
-                    René Nauheimer
-                  </a>
-                  . Over time, the company evolved into a small, specialised
-                  studio that helps organisations to solve important challenges
-                  with Sprints and Workshops. In my role, I'm focused on
-                  strategy, healthy growth and charming clients (I try my best).
-                  The journey of building this company from the ground up has
-                  been one of the most satisfying experiences in my life. Head
-                  over to my{" "}
-                  <a href="https://www.linkedin.com/in/wirtzdan/"> LinkedIn</a>,
-                  if you want to connect with my professionally.
+                  Though I spend most of my time writing code for building User
+                  Interfaces using reactjs ❤️, I also like enjoying working in
+                  the intersection of design and development. I feel most
+                  productive when I'm able to design User Interfaces which not
+                  only look good but has a good performance as well.
                 </Text>
               </VStack>
             </CenterContainer>
-            <CenterContainer>
+            {/* <CenterContainer>
               <VStack align="stretch" spacing={4}>
                 <Heading as="h2">😁</Heading>
                 <Wrap>
@@ -59,8 +92,8 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
                   ))}
                 </Wrap>
               </VStack>
-            </CenterContainer>
-            <CenterContainer>
+            </CenterContainer> */}
+            {/* <CenterContainer>
               <VStack align="stretch" spacing={4}>
                 <Heading as="h2">😒</Heading>
                 <Wrap>
@@ -69,7 +102,7 @@ const AboutScreen: React.FC<AboutScreenProps> = () => {
                   ))}
                 </Wrap>
               </VStack>
-            </CenterContainer>
+            </CenterContainer> */}
           </VStack>
         </CenterContainer>
       </Box>

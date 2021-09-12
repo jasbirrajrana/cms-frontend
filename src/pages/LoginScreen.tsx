@@ -5,7 +5,6 @@ import { LinkBox, useDisclosure, useMergeRefs } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import React, { useContext } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
-import ChakraLink from "../components/ChakraLink";
 import Field from "../components/Field";
 import HelmetSeo from "../components/HelmetSeo";
 import { AuthContext } from "../context/auth";

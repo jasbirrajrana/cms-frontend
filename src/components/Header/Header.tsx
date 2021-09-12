@@ -2,7 +2,7 @@ import { Button, IconButton } from "@chakra-ui/button";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { Box, Flex, Stack } from "@chakra-ui/layout";
+import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import { Collapse } from "@chakra-ui/transition";
 import React, { useContext } from "react";
@@ -27,7 +27,12 @@ const Header: React.FC<HeaderProps> = () => {
   const [logout, { client }] = useLogout_MeMutation();
   return (
     <>
-      <Box position="fixed" width="100%" top="0" zIndex="modal">
+      <Box
+        position="fixed"
+        width="100%"
+        top="0"
+        zIndex="modal"
+        fontFamily="Ubuntu">
         <Flex
           bg={useColorModeValue("white", "gray.800")}
           color={useColorModeValue("gray.600", "white")}
@@ -59,16 +64,16 @@ const Header: React.FC<HeaderProps> = () => {
             flex={{ base: 1 }}
             justify={{ base: "center", md: "start" }}
             alignItems="center">
-            <Image
-              src={text === "dark" ? "/logo.png" : "/logo-white.png"}
-              alt="logo"
-              position="absolute"
-              boxSize="100px"
-              objectFit="contain"
-              display="block"
-            />
+            <Link to="/">
+              <Heading
+                fontFamily="Kristi"
+                letterSpacing="2px"
+                color={text === "dark" ? "blackAlpha.800" : "white"}>
+                &lt; Jasbir /&gt;
+              </Heading>
+            </Link>
 
-            <Flex display={{ base: "none", md: "flex" }} ml={150}>
+            <Flex display={{ base: "none", md: "flex" }} ml={100}>
               <DesktopNav />
             </Flex>
           </Flex>

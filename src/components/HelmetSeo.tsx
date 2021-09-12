@@ -1,18 +1,22 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 interface HelmetSeoProps {
-  title: string;
-  content: string;
+  title?: string;
+  content?: string;
 }
 
 const HelmetSeo: React.FC<HelmetSeoProps> = ({
   title = "Home | jasbirrajrana",
   content,
+  children,
 }) => {
   return (
     <>
-      <Helmet>
-        <title>{title}</title>‍
+      <Helmet
+        titleTemplate="%s"
+        defaultTitle="Jasbir Raj Rana | Full stack Developer">
+        {title && <title>{title}</title>}
+        ‍
         <meta name="description" content={content} />
         <meta http-equiv="X-UA-Compatible" content="IE=7" />
         <meta

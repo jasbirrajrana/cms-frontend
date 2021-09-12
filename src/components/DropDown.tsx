@@ -33,10 +33,17 @@ const DropDown: React.FC<DropDownProps> = () => {
               </MenuItem>
             )}
 
-            {user && user.isSuperAdmin && (
+            {/* {user && user.isSuperAdmin && (
               <MenuItem>
                 <ChakraLink _hover={{ textDecoration: "none" }}>
                   <Link to="/users">Users</Link>
+                </ChakraLink>
+              </MenuItem>
+            )} */}
+            {user && user.isSuperAdmin && (
+              <MenuItem>
+                <ChakraLink _hover={{ textDecoration: "none" }}>
+                  <Link to="/myposts">My Posts</Link>
                 </ChakraLink>
               </MenuItem>
             )}

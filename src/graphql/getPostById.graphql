@@ -1,0 +1,20 @@
+query getPostById($post_id: String!) {
+  getPostById(post_id: $post_id) {
+    _id
+    slug
+    createdAt
+    updatedAt
+    body
+    subtitle
+    featureImage
+    tag
+    likes
+    title
+    description
+    author {
+      _id
+      username
+      email
+    }
+  }
+}

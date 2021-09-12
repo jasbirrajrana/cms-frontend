@@ -10,8 +10,9 @@ import customTheme from "./styles/theme";
 import GlobalStyle from "./GlobalStyle";
 import "@fontsource/raleway";
 import "@fontsource/ubuntu";
-import "@fontsource/fira-code";
+import "@fontsource/kristi";
 import "@fontsource/ubuntu-mono";
+
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider theme={customTheme}>

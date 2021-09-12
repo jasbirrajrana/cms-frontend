@@ -67,11 +67,16 @@ const PostContainer: React.FC<PostContainerProps> = ({
                 bg={useColorModeValue("green.100", "green.900")}
                 p={2}
                 px={3}
+                fontFamily="Ubuntu"
                 color={"green.500"}
                 rounded={"base"}>
                 {tag}
               </Text>
-              <Text color={useColorModeValue("gray.400", "white")}>{text}</Text>
+              <Text
+                color={useColorModeValue("gray.400", "white")}
+                fontFamily="Ubuntu">
+                {text}
+              </Text>
             </Box>
             <Link to={`/post/${slug}`}>
               <Heading

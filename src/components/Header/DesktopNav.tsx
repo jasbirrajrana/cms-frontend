@@ -17,7 +17,6 @@ const DesktopNav: React.FC<DesktopNavProps> = () => {
                 <Link
                   p={2}
                   href={navItem.href ?? "#"}
-                  fontSize={"sm"}
                   fontWeight={500}
                   _hover={{
                     textDecoration: "none",

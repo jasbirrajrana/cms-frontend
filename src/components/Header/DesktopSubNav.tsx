@@ -29,7 +29,7 @@ const DesktopSubNav: React.FC<DesktopSubNavProps> = ({
             <Text
               transition={"all .3s ease"}
               _groupHover={{ color: "pink.400" }}
-              fontWeight={500}>
+              fontWeight={600}>
               {label}
             </Text>
             <Text fontSize={"sm"}>{subLabel}</Text>

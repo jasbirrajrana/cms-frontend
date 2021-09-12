@@ -1,10 +1,12 @@
-query getPosts {
-  getAllPosts {
+query getMyPosts {
+  getMyPosts {
     _id
     title
     body
     slug
     likes
+    createdAt
+    updatedAt
     tag
     description
     author {

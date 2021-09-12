@@ -1,4 +1,4 @@
-query getPost($slug: String!) {
+query getPostByslug($slug: String!) {
   getPostByslug(slug: $slug) {
     _id
     slug
@@ -6,6 +6,7 @@ query getPost($slug: String!) {
     updatedAt
     body
     featureImage
+    likes
     title
     description
     author {

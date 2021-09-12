@@ -20,9 +20,9 @@ const prismBaseTheme = css`
     word-wrap: normal;
     letter-spacing: 0.01rem;
     line-height: ${theme.lineHeights[2]};
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
+    /* -moz-tab-size: 4; */
+    /* -o-tab-size: 4; */
+    /* tab-size: 4; */
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
@@ -34,12 +34,17 @@ const prismBaseTheme = css`
     padding-bottom: ${theme.space[4]};
     padding-left: ${theme.space[4]};
     padding-right: ${theme.space[4]};
-    margin: ${theme.space[6]} 0;
-    overflow: auto;
-    min-width: 100%;
-    font-size: 1rem;
+    /* margin: ${theme.space[6]} 0; */
+    /* overflow: auto; */
+    /* overflow-x: visible; */
+    /* min-width: 100%; */
+    /* width: 30em; */
+    display: block;
+    overflow-x: auto;
     white-space: nowrap;
-    width: 100%;
+    font-size: 1rem;
+    /* white-space: nowrap; */
+    /* width: 100%; */
   }
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {
@@ -121,7 +126,7 @@ const prismBaseTheme = css`
     padding-right: ${theme.space[4]};
     background-color: ${theme.colors.gray[200]};
     box-shadow: inset 3px 0px 0 0px ${theme.colors.blue[600]};
-    min-width: fit-content;
+    /* min-width: fit-content; */
   }
   .remark-code-title {
     padding: ${theme.space[2]} ${theme.space[4]};

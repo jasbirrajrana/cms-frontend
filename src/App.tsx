@@ -16,7 +16,8 @@ import PostScreen from "./pages/PostScreen";
 import Footer from "./components/Footer";
 import AboutScreen from "./pages/AboutScreen";
 import WriteArticleScreen from "./pages/WriteArticleScreen";
-import UsersScreen from "./pages/UsersScreen";
+import AdminPostsListScreen from "./pages/AdminPostsListScreen";
+import EditPost from "./pages/EditPost";
 interface AppProps {}
 
 const App: React.FC<AppProps> = () => {
@@ -44,7 +45,8 @@ const App: React.FC<AppProps> = () => {
           <Route path="/post/:slug" component={PostScreen} />
           <Route path="/about" component={AboutScreen} />
           <Route path="/new" component={WriteArticleScreen} />
-          <Route path="/users" component={UsersScreen} />
+          <Route path="/myposts" component={AdminPostsListScreen} />
+          <Route path="/editpost/:id" component={EditPost} />
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>
