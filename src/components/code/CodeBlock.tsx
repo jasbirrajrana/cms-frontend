@@ -8,6 +8,7 @@ import {
   useClipboard,
   useColorModeValue,
   IconButton,
+  useMediaQuery,
 } from "@chakra-ui/react";
 // import Highlight from "./Highlight";
 import { Check, DuplicateOutline } from "heroicons-react";
@@ -17,9 +18,11 @@ const Codeblock = (props) => {
   const showLines = true;
 
   const { className, children, viewlines, metastring, ln, ...rest } = props;
-  console.log("props", props);
   const [editorCode] = useState(children);
-
+  const [isLargerThan820] = useMediaQuery("(min-width: 820px)");
+  const [isSmallThan700] = useMediaQuery("(max-width: 700px)");
+  const [isSmallThan485] = useMediaQuery("(max-width: 485px)");
+  // const [isSmallThan520] = useMediaQuery("(max-width: 520px)");
   const { hasCopied, onCopy } = useClipboard(editorCode);
 
   const language = className?.replace(/lang-/, "");
@@ -28,13 +31,19 @@ const Codeblock = (props) => {
   for (let i = 1; i < subString.length - 1; i++) {
     codeLabel += subString[i];
   }
-  console.log(codeLabel);
+  console.log("isLargerThan820", isLargerThan820);
+  console.log("isSmallThan700", isSmallThan700);
+  console.log("isSmallThan485", isSmallThan485);
   return (
     <Box
       rounded="md"
-      overflow="hidden"
+      // overflow="hidden"
+      // width="23rem"
+      // width={isSmallThan730 ? "45rem" : "100%"}
+      // w={["100%", 700]}
+      w={isLargerThan820 ? "100%" : isSmallThan700 ? "21rem" : "42rem"}
       bg={useColorModeValue("white", "gray.800")}
-      // my={4}
+      my={4}
       borderWidth="1px"
       borderColor={useColorModeValue("gray.200", "gray.700")}>
       {codeLabel ? (

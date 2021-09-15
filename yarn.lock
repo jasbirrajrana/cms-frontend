@@ -15666,11 +15666,6 @@ use-callback-ref@^1.2.1, use-callback-ref@^1.2.3:
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.2.5.tgz#6115ed242cfbaed5915499c0a9842ca2912f38a5"
   integrity sha512-gN3vgMISAgacF7sqsLPByqoePooY3n2emTH59Ur5d/M8eg4WTWu1xp8i8DHjohftIyEx0S08RiYxbffr4j8Peg==
 
-use-mediaquery@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/use-mediaquery/-/use-mediaquery-1.0.1.tgz#7066dd1b012f41525624ec341fc9eaaa3fb86e05"
-  integrity sha512-4f5PxWMZ6zlS15vmI9/auMztgbJ+wUkWjLcLSLpwSklardBz0zF6UJ5vQ05uBu6h4NoI1hPkbXFTF0GITOTbrA==
-
 use-sidecar@^1.0.1:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/use-sidecar/-/use-sidecar-1.0.5.tgz#ffff2a17c1df42e348624b699ba6e5c220527f2b"
