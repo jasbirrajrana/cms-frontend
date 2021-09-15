@@ -21,10 +21,11 @@ const Header: React.FC<HeaderProps> = () => {
   const { toggleColorMode } = useColorMode();
 
   const text = useColorModeValue("dark", "light");
-  const [isSmallThan730] = useMediaQuery("(max-width: 730px)");
+  const [isSmallThan530] = useMediaQuery("(max-width: 530px)");
   const { isOpen, onToggle } = useDisclosure();
   const { user } = useContext(AuthContext);
   const [logout, { client }] = useLogout_MeMutation();
+  console.log("isSmallThan630", isSmallThan530);
   return (
     <>
       <Box
@@ -38,7 +39,7 @@ const Header: React.FC<HeaderProps> = () => {
           color={useColorModeValue("gray.600", "white")}
           minH={"60px"}
           py={{ base: 6 }}
-          px={{ base: 12 }}
+          px={{ base: isSmallThan530 ? "6" : "28" }}
           borderBottom={1}
           borderStyle={"solid"}
           borderColor={useColorModeValue("gray.200", "gray.900")}
@@ -46,6 +47,7 @@ const Header: React.FC<HeaderProps> = () => {
           <Flex
             flex={{ base: 1, md: "auto" }}
             ml={{ base: -2 }}
+            mr="-70px"
             display={{ base: "flex", md: "none" }}>
             <IconButton
               onClick={onToggle}
@@ -66,6 +68,8 @@ const Header: React.FC<HeaderProps> = () => {
             alignItems="center">
             <Link to="/">
               <Heading
+                // fontSize="28px"
+                fontSize={isSmallThan530 ? "22px" : "28px"}
                 fontFamily="Kristi"
                 letterSpacing="2px"
                 color={text === "dark" ? "blackAlpha.800" : "white"}>
@@ -86,14 +90,14 @@ const Header: React.FC<HeaderProps> = () => {
             {user ? (
               <>
                 <DropDown />
-                <Button
+                {/* <Button
                   colorScheme="red"
                   onClick={async () => {
                     await logout();
                     client.cache.reset();
                   }}>
                   Logout
-                </Button>
+                </Button> */}
               </>
             ) : (
               <Link to="/login">

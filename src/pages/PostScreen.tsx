@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { Avatar } from "@chakra-ui/avatar";
+import { MDXRemote } from "next-mdx-remote";
 import {
   Box,
   Center,
@@ -98,14 +99,14 @@ const PostScreen: React.FC<PostScreenProps> = () => {
             title={data?.getPostByslug.title}
             content={data?.getPostByslug.description}
           />
-          <Box
+          {/* <Box
             h={1}
             as="div"
             bgGradient="linear(to-r, green.200, pink.500)"
             position="sticky"
             top={0}
             zIndex={9999}
-            w={`${width}%`}></Box>
+            w={`${width}%`}></Box> */}
           <Center mt="100px">
             <Box w={["100%", 850]}>
               <Stack
@@ -161,6 +162,7 @@ const PostScreen: React.FC<PostScreenProps> = () => {
                 <HighlightedMarkdown>
                   {data?.getPostByslug.body}
                 </HighlightedMarkdown>
+
                 {/* <FeatureProjectCard
                 title="Portfolio"
                 href="https://jasbirrajrana.live/"

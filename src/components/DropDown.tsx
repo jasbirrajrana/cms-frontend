@@ -8,15 +8,18 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/menu";
+import { Button } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth";
+import { FiLogOut } from "react-icons/fi";
+import { useLogout_MeMutation } from "../generated/graphql";
 
 interface DropDownProps {}
 
 const DropDown: React.FC<DropDownProps> = () => {
   const { user } = useContext(AuthContext);
-
+  const [logout, { client }] = useLogout_MeMutation();
   return (
     <>
       <Menu>
@@ -47,11 +50,21 @@ const DropDown: React.FC<DropDownProps> = () => {
                 </ChakraLink>
               </MenuItem>
             )}
-          </MenuGroup>
-          <MenuDivider />
-          <MenuGroup title="Help">
-            <MenuItem>Docs</MenuItem>
-            <MenuItem>FAQ</MenuItem>
+            {user && (
+              <>
+                <Button
+                  textAlign="left"
+                  variant="ghost"
+                  colorScheme="red"
+                  onClick={async () => {
+                    await logout();
+                    client.cache.reset();
+                  }}>
+                  <FiLogOut />
+                  <span style={{ marginLeft: "12px" }}>Logout</span>
+                </Button>
+              </>
+            )}
           </MenuGroup>
         </MenuList>
       </Menu>

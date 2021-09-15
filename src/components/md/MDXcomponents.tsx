@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 
 import { Alert } from "@chakra-ui/alert";
 import { useColorMode } from "@chakra-ui/color-mode";

@@ -1,7 +1,6 @@
 import { useColorMode } from "@chakra-ui/color-mode";
 import { css, Global } from "@emotion/react";
 import React from "react";
-import { prismDarkTheme, prismLightTheme } from "./styles/highlight";
 
 interface GlobalStyleProps {}
 
@@ -11,7 +10,6 @@ const GlobalStyle: React.FC<GlobalStyleProps> = () => {
     <>
       <Global
         styles={css`
-          ${colorMode === "light" ? prismLightTheme : prismDarkTheme};
           ::-webkit-scrollbar {
             width: 12px;
           }
@@ -40,7 +38,7 @@ const GlobalStyle: React.FC<GlobalStyleProps> = () => {
             background: #ffb7b7;
             color: #fefefe;
           }
-          code {
+          /* code {
             font-size: 15px;
           }
           p > code {
@@ -49,7 +47,7 @@ const GlobalStyle: React.FC<GlobalStyleProps> = () => {
             padding: 2px;
             color: #000;
             font-weight: light;
-          }
+          } */
         `}
       />
     </>
